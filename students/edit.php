@@ -146,7 +146,7 @@
 			<select name="course">
 				<?php echo $course_opts; ?>
 			</select>
-			<button type="button">Add to Schedule</button>
+			<button id="addCourse" type="button">Add to Schedule</button>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
 		<script src="../js/courses.js" type="text/javascript"></script>
