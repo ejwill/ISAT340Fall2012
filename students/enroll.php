@@ -15,3 +15,9 @@
 			
 	// execute the query
 	$result = $db->query( $sql );
+	
+	if ( true == $result ) {
+		echo '1';
+	} else {
+		echo '0';
+	}

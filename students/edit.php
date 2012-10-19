@@ -71,9 +71,7 @@
 		<meta charset="utf-8" />
 		<title>Update a Student</title>
 		<link rel="stylesheet" media="screen" href="../css/style.css" />
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<script type="text/javascript" src="../js/courses.js"></script>
-		</head>
+	</head>
 	<body>
 		<div id="wrapper">
 			<h1>Update a Student</h1>
@@ -144,7 +142,7 @@
 				<tbody>
 				</tbody>
 			</table>
-			<select name="course">
+			<select id="courseToAdd" name="course">
 				<?php echo $course_opts; ?>
 			</select>
 			<button id="addCourse" type="button">Add to Schedule</button>
