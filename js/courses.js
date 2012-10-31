@@ -24,11 +24,36 @@ jQuery( document ).ready( function( $ ) {
 					courseID:  cid
 				},
 				success: function ( res ) {
-					console.log( res );
+					var newrow = '<tr><th scope="row">' + res.title + '</th>' +
+									  '<td>' + res.code + '</td>' +
+									  '<td>' + res.difficulty + '</td>' +
+									  '<td>&nbsp;</td>';
+					$( '#schedule tbody' ).append( newrow );
 				}
 			});
 		}
 	});
 	
+	$( '.removeCourse' ).click( function() {
+		// get the id of the student
+		var sid = $( 'input[name="id"]' ).val();
+		// get the id of the course
+		var cid = $( this ).val();
+		// send a request to the server to remove the course
+		$.post(
+			'unenroll.php',
+			{
+				'studentID' : sid,
+				'courseID'  : cid
+			},
+			function( res ) {
+				if ( 1 == res.success ) {
+					$( 'button[value="' + cid + '"]' ).closest( 'tr' ).remove();
+				} else {
+					alert( res.message );
+				}
+			}
+		);
+	});
 	
 });

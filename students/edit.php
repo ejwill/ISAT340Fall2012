@@ -51,6 +51,15 @@
 		$homephone = '(' . substr( $student[ 'homephone' ], 0, 3 ) . ') ' .
 					 substr( $student[ 'homephone' ], 3, 3 ) . '-' .
 					 substr( $student[ 'homephone' ], 6, 4 );
+		
+		// get the list of courses for this student
+		$sql = "SELECT 	courses.ID, title, code, difficulty
+				FROM 	courses, studentscourses
+				WHERE	courses.ID = studentscourses.courseID AND
+						studentscourses.studentID = $id";
+		
+		// execute the query
+		$enrolled = $db->query( $sql );
 	}
 	
 	// get the courses for our courses dropdown
@@ -140,6 +149,18 @@
 					</tr>
 				</thead>
 				<tbody>
+				<?php while ( $c = $enrolled->fetch_assoc() ): ?>
+					<tr>
+						<th scope="row"><?php echo $c[ 'title' ]; ?></th>
+						<td><?php echo $c[ 'code' ]; ?></td>
+						<td><?php echo $c[ 'difficulty' ]; ?></td>
+						<td>
+							<button class="removeCourse" type="button" value="<?php echo $c[ 'ID' ]; ?>">
+								Remove
+							</button>
+						</td>
+					</tr>
+				<?php endwhile; ?>
 				</tbody>
 			</table>
 			<select id="courseToAdd" name="course">

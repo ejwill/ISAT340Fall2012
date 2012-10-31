@@ -17,7 +17,10 @@
 	$result = $db->query( $sql );
 	
 	if ( true == $result ) {
-		echo '1';
+		// get the info for the course that was just added
+		$sql = "SELECT * FROM courses WHERE id = $cid";
+		$course = $db->query( $sql )->fetch_assoc();
+		echo json_encode( $course );
 	} else {
-		echo '0';
+		echo json_encode( $db->error );
 	}
